@@ -1,0 +1,36 @@
+   
+        body {
+            padding: 0;
+            /* Quitamos el padding global para que en celular llegue a los bordes */
+            background: linear-gradient(10deg, #3f007a 0%, #100068 100%);
+            background-attachment: fixed;
+            margin: 0;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Centramos todo el contenido vertical, horizontalmente y al centro*/
+        }
+
+        /* esto se llama glassmorphism, es "una malformación en el gradiente del fondo" como si fuera una caja */
+        .container {
+            /* 100% del ancho -15px a los bordes */
+            width: calc(100% - 15px);
+            max-width: 450px;
+            margin: 20px auto;
+
+            background: rgba(255, 255, 255, 0.05);
+            /* se llama " ALPHA"el 0.05 es la solides del color, un 5% solido y 95% traslucido */
+            backdrop-filter: blur(10px);
+            /* el buen blur, nada le gana*/
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Bordesito */
+            border-radius: 20px;
+            /* Bordes redondeados modernos */
+            padding: 40px 30px;
+            /* Espacio interno */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            /* Sombra para dar profundidad */
+        }

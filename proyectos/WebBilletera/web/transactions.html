@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Alke Wallet - Historial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nicolás Krebs - nikrebs99@gmail.com">
+    <link rel="shortcut icon" href="../assets/svg/bank-svgrepo-com.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <style></style> fue obliterado para traer al *benevolente emperador link* -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .list-group-item {
+            color: #000000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .movimiento-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .monto-positivo {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .monto-negativo {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .fecha-texto {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Últimos Movimientos</h2>
+        <p>Historial de transacciones de la cuenta.</p>
+        <div class="form-group">
+            <select class="form-control" id="filtroMovimientos"
+                style="background-color: rgba(255,255,255,0.1); color: white; border: 1px solid #deff9a;">
+                <option value="todos" style="color: black;">Todos los movimientos</option>
+                <option value="deposito" style="color: black;">Solo Depósitos</option>
+                <option value="transferencia" style="color: black;">Solo Transferencias</option>
+            </select>
+        </div>
+
+        <ul id="listaMovimientos" class="list-group mb-4"></ul>
+
+        <div class="text-center mt-4">
+            <a href="menu.html" class="btn btn-secondary w-100">Volver al Menú Principal</a>
+        </div>
+    </div>
+
+    <footer id="footerGlobal"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../assets/js/utilidades.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // SEGURIDAD BÁSICA
+            const emailActivo = localStorage.getItem('usuarioActivo');
+            if (emailActivo === null) {
+                mostrarMensaje("Cuidado", "Debes iniciar sesión primero.", "error", "index.html");
+                return;
+            }
+
+            // OBTENER LOS DATOS
+            let listaUsuarios = JSON.parse(localStorage.getItem('usuariosBanco'));
+            let miUsuario = listaUsuarios.find(user => user.email === emailActivo);
+            const $lista = $('#listaMovimientos');
+
+            // Si el historial no existe, lo creamos como lista vacía para evitar errores
+            if (miUsuario.historial === undefined) {
+                miUsuario.historial = [];
+            }
+
+            // FUNCIÓN REUTILIZABLE PARA DIBUJAR
+            // Recibe la palabra clave ("todos", "deposito" o "transferencia")
+            function renderizarMovimientos(filtro) {
+
+                $lista.empty(); // Limpiamos la pantalla
+
+                // 1. Invertimos el historial completo para ver lo más nuevo arriba
+                let historialInvertido = miUsuario.historial.slice().reverse();
+
+                // 2. Aplicamos el "colador" (filtro)
+                let historialFiltrado = historialInvertido; // Por defecto son "todos" en historialInvertido
+
+                if (filtro === "deposito") {
+                    // Solo dejamos pasar los que su tipo sea exactamente "Depósito"
+                    historialFiltrado = historialInvertido.filter(mov => mov.tipo === "Depósito");
+                } else if (filtro === "transferencia") {
+                    // Como guardamos "Transferencia a Juan", buscamos si el texto incluye la palabra
+                    historialFiltrado = historialInvertido.filter(mov => mov.tipo.includes("Transferencia"));
+                }
+
+                // 3. Dibujamos el resultado en pantalla
+                if (historialFiltrado.length === 0) {
+                    $lista.html("<li class='list-group-item text-muted text-center'>No hay movimientos para mostrar.</li>");
+                } else {
+                    historialFiltrado.forEach(function (movimiento) {
+                        let claseColor = movimiento.monto.includes("+") ? "monto-positivo" : "monto-negativo";
+
+                        const nuevoElemento = `
+                            <li class="list-group-item">
+                                <div class="movimiento-info">
+                                    <strong>${movimiento.tipo}</strong>
+                                    <span class="fecha-texto">${movimiento.fecha}</span>
+                                </div>
+                                <div class="${claseColor}">
+                                    ${movimiento.monto}
+                                </div>
+                            </li>
+                        `;
+                        $lista.append(nuevoElemento);
+                    });
+                }
+            }
+
+            // EJECUCIÓN INICIAL: Dibujamos "todos" la primera vez que entramos a la página
+            renderizarMovimientos("todos");
+
+            // EVENTO jQUERY: Escuchamos cuando el usuario cambia el selector
+            $('#filtroMovimientos').on('change', function () {
+                // Obtenemos el valor ("todos", "deposito" o "transferencia") usando .val()
+                const opcionElegida = $(this).val();
+
+                // Volvemos a ejecutar la función con el nuevo filtro
+                renderizarMovimientos(opcionElegida);
+            });
+
+        });
+    </script>
+</body>
+
+</html>

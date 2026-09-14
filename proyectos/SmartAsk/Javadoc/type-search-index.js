@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.nikrebs.fuente","l":"Main"},{"p":"com.nikrebs.fuente","l":"Metodos"},{"p":"com.nikrebs.fuente","l":"Tarea"},{"p":"com.nikrebs.fuente","l":"TareaUrgente"}];updateSearchResults();

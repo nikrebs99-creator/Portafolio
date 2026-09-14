@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Alke Wallet - Depósito</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nicolás Krebs - nikrebs99@gmail.com">
+    <meta name="description" content="Mi primera estafa piramidal">
+    <link rel="shortcut icon" href="../assets/svg/bank-svgrepo-com.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <style></style> fue obliterado para traer al *benevolente emperador link* -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Depositar</h2>
+        <p>Hola, <span id="nombreUsuario" style="color: #deff9a; font-weight: bold;"></span>. Ingresa el monto a
+            depositar en tu cuenta.</p>
+
+        <form id="formDeposito">
+            <div class="form-group">
+                <label for="depositAmount">Monto a depositar ($):</label>
+                <input type="number" class="form-control" id="depositAmount" placeholder="Ej. 5000" min="1">
+            </div>
+
+            <div class="contenedor-botones">
+                <button type="button" id="btnDepositar" class="btn btn-primary">Realizar depósito</button>
+                <button type="button" id="btnVolver" class="btn btn-secondary">Volver al Menú</button>
+            </div>
+        </form>
+    </div>
+
+    <footer id="footerGlobal"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../assets/js/utilidades.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // VERIFICACIÓN DE SESIÓN
+            const emailActivo = localStorage.getItem('usuarioActivo');
+
+            if (emailActivo === null) {
+                mostrarMensaje("Cuidado", "Debes iniciar sesión primero.", "error", "index.html");
+
+                return;
+            } else {
+                // Nombre de usuario como correo
+                $('#nombreUsuario').text(emailActivo);
+            }
+
+            // LÓGICA DE DEPÓSITO
+            $('#btnDepositar').on('click', function () {
+
+                // val ahora es el monto del formulario
+                const inputMonto = $('#depositAmount').val();
+                const monto = parseFloat(inputMonto);
+
+                // Validación de seguridad
+                if (isNaN(monto) || monto <= 0) {
+                    mostrarMensaje("Error", "Por favor ingresa un monto válido mayor a 0.", "error");
+                    $('#depositAmount').val(''); // Limpiamos el error
+                    $('#depositAmount').focus(); // Devolvemos el cursor
+                    return;
+                }
+
+                // Operaciones con la base de datos
+                let listaUsuarios = JSON.parse(localStorage.getItem('usuariosBanco'));
+                let miUsuario = listaUsuarios.find(user => user.email === emailActivo);
+
+                if (miUsuario.saldo === undefined) {
+                    miUsuario.saldo = 0;
+                }
+
+                // Suma
+                miUsuario.saldo = miUsuario.saldo + monto;
+
+                // Por si el usuario no tenía historial
+                if (miUsuario.historial === undefined) {
+                    miUsuario.historial = [];
+                }
+
+                miUsuario.historial.push({
+                    tipo: "Depósito",
+                    monto: "+" + monto,
+                    fecha: new Date().toLocaleString()
+                });
+
+                // Guardamos todo
+                localStorage.setItem('usuariosBanco', JSON.stringify(listaUsuarios));
+
+                // Éxito y redirección
+                mostrarMensaje("Éxito", "¡Depósito de $" + monto + " realizado con éxito! Tu nuevo saldo es: $" + miUsuario.saldo, "exito", "menu.html");
+            });
+
+            // LÓGICA DEL BOTÓN VOLVER
+            $('#btnVolver').on('click', function () {
+                window.location.href = "menu.html";
+            });
+
+        }); // Fin de la zona segura
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+/* Variables de color estelar */
+:root {
+    --purple-stellar: #2a0845;
+    --purple-deep: #160029;
+    --accent-color: #8a2be2;
+}
+
+/* --- BARRA LATERAL ESTELAR --- */
+.sidebar-estelar {
+    /* Un gradiente oscuro y misterioso */
+    background: linear-gradient(180deg, var(--purple-deep) 0%, var(--purple-stellar) 100%);
+    box-shadow: 4px 0 15px rgba(138, 43, 226, 0.2);
+    z-index: 10;
+}
+
+.sidebar-estelar .active {
+    background-color: var(--accent-color) !important;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
+.icon-hover {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon-hover:hover {
+    transform: scale(1.1);
+    color: var(--accent-color) !important;
+}
+
+/* --- EFECTO PORTAL DEL END (MINECRAFT) EN EL FONDO --- */
+/* Aplicamos esto al contenedor principal o al body */
+.principal-content {
+    position: relative;
+    background-color: #050505; /* Fondo ultra oscuro */
+    overflow: hidden;
+}
+
+/* Capa de estrellas del portal */
+.principal-content::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Generamos un patrón de "estrellas" usando radial-gradients para simular el ruido del portal */
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, #e0c8ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 120px, #b8860b, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.4;
+    z-index: -1;
+    /* La animación que da la sensación de caer o flotar en el portal */
+    animation: endPortalDrift 40s linear infinite;
+}
+
+/* Animación de desplazamiento sutil */
+@keyframes endPortalDrift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-100px, -100px) rotate(3deg); }
+}
+
+/* Ajustes menores para que las tarjetas resalten sobre el portal */
+.bg-dark {
+    background-color: rgba(20, 20, 25, 0.85) !important; /* Semitransparente para ver el fondo */
+    backdrop-filter: blur(5px); /* Efecto vidrio esmerilado */
+}

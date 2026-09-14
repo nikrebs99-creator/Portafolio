@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Alke Wallet - Menu Principal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nicolás Krebs - nikrebs99@gmail.com">
+    <meta name="description" content="Mi primera estafa piramidal">
+    <link rel="shortcut icon" href="../assets/svg/bank-svgrepo-com.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <!-- <style></style> fue obliterado para traer al *benevolente emperador link* -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Bienvenido, <br><span id="nombreUsuario" style="font-size: 0.8em; color: #ccc;"></span></h2>
+
+        <div class="form-group mt-4 mb-4">
+            <label for="balance">Dinero en cuenta disponible:</label>
+            <h3 id="saldoActual">$0</h3>
+        </div>
+
+        <div class="contenedor-botones">
+            <a href="deposit.html" class="btn btn-primary">Depositar</a>
+            <a href="sendmoney.html" class="btn btn-primary">Enviar Dinero</a>
+            <a href="transactions.html" class="btn btn-primary">Últimos Movimientos</a>
+            <button type="button" id="btnCerrarSesion" class="btn btn-secondary">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <footer id="footerGlobal"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../assets/js/utilidades.js"></script>
+    <script>
+        // Entramos a la zona segura
+        $(document).ready(function () {
+
+            // Seguridad de Sesión
+            const emailActivo = localStorage.getItem('usuarioActivo');
+
+            if (emailActivo === null) {
+                mostrarMensaje("Cuidado", "Debes iniciar sesión primero.", "error", "index.html");
+                return; // no te pases de listo, si no estas logeado, fuera.
+            }
+
+            // email activo
+            $('#nombreUsuario').text(emailActivo);
+
+            // Rescate de datos desde localStorage
+            let listaUsuarios = JSON.parse(localStorage.getItem('usuariosBanco'));
+            let miUsuario = listaUsuarios.find(user => user.email === emailActivo);
+
+            let saldoAMostrar = 0;
+            if (miUsuario.saldo !== undefined) {
+                saldoAMostrar = miUsuario.saldo;
+            }
+
+            $('#saldoActual').text("$" + saldoAMostrar);
+
+            // Cierre de sesion
+            $('#btnCerrarSesion').on('click', function () {
+                localStorage.removeItem('usuarioActivo');
+                window.location.href = "index.html";
+            });
+
+        }); // Fin del ready
+    </script>
+</body>
+
+</html>

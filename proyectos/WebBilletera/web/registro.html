@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+
+
+    <title>Alke Wallet - Registro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nicolás Krebs">
+    <link rel="shortcut icon" href="../assets/svg/bank-svgrepo-com.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <style></style> fue obliterado para traer al *benevolente emperador link* -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Alke Wallet - Registro</h2>
+        <p>Crea tu cuenta para empezar a operar.</p>
+
+        <form id="registroForm">
+            <div class="form-group">
+                <label for="nuevoEmail">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="nuevoEmail" placeholder="tu@correo.com">
+            </div>
+            <div class="form-group">
+                <label for="nuevaPassword">Contraseña:</label>
+                <input type="password" class="form-control" id="nuevaPassword" placeholder="Crea una contraseña">
+            </div>
+
+            <div class="contenedor-botones">
+                <button type="button" id="btnRegistrar" class="btn btn-success">Crear Cuenta</button>
+                <button type="button" id="btnVolver" class="btn btn-secondary">Volver al Login</button>
+            </div>
+        </form>
+    </div>
+
+    <footer id="footerGlobal"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../assets/js/utilidades.js"></script>
+    <script>
+        // La "Zona Segura"
+        $(document).ready(function () {
+
+            // Lógica del botón "Crear Cuenta"
+            $('#btnRegistrar').on('click', function () {
+
+                // Usamos jQuery .val() y lo combinamos con .trim() de JavaScript
+                const email = $('#nuevoEmail').val().trim();
+                const password = $('#nuevaPassword').val().trim();
+
+                // Validaciones...
+                if (email === "" || password === "") {
+                    mostrarMensaje("Error", "Por favor completa todos los campos.");
+                    return;
+                }
+
+                const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!regexCorreo.test(email)) {
+                    mostrarMensaje("Error,", "Por favor ingresa un formato de correo válido.", "error");
+                    $('#nuevoEmail').focus(); // jQuery .focus()
+                    return;
+                }
+
+                // Lógica de base de datos...
+                let usuariosGuardados = localStorage.getItem('usuariosBanco');
+                let listaUsuarios = [];
+
+                if (usuariosGuardados !== null) {
+                    listaUsuarios = JSON.parse(usuariosGuardados);
+                }
+
+                const usuarioExistente = listaUsuarios.find(function (usuario) {
+                    return usuario.email === email;
+                });
+
+                if (usuarioExistente) {
+                    mostrarMensaje("AVISO", "Este correo ya está registrado. Por favor, inicia sesión.");
+                    // Vaciamos los campos con jQuery
+                    $('#nuevoEmail').val("");
+                    $('#nuevaPassword').val("");
+                    return;
+                }
+
+                const nuevoUsuario = {
+                    email: email,
+                    password: password,
+                    saldo: 0,
+                    contactos: [],
+                    historial: []
+                };
+
+                listaUsuarios.push(nuevoUsuario);
+                localStorage.setItem('usuariosBanco', JSON.stringify(listaUsuarios));
+
+                mostrarMensaje("¡Registro exitoso!", " Ya puedes iniciar sesión con tus nuevas credenciales.", "exito", "index.html");
+                // window.location.href = "index.html";
+            });
+
+            // Lógica del botón "Volver"
+            $('#btnVolver').on('click', function () {
+                window.location.href = "index.html";
+            });
+
+        }); // Fin del document.ready
+    </script>
+</body>
+
+</html>
