@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,27 +12,32 @@
     <!-- CSS Personalizado -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body class="bg-black text-light">
 
     <div class="d-flex" id="wrapper">
         <!-- BARRA LATERAL (Sidebar) -->
-        <div class="sidebar-estelar d-flex flex-column flex-shrink-0 p-3 text-white" style="width: 280px; min-height: 100vh;">
+        <div class="sidebar-estelar d-flex flex-column flex-shrink-0 p-3 text-white"
+            style="width: 280px; min-height: 100vh;">
             <div class="text-center mb-4 mt-3">
-                <img src="img/descarga.png" alt="Mi Foto" class="rounded-circle border border-2 border-light object-fit-cover" width="120" height="120">
+                <img src="img/descarga.png" alt="Mi Foto"
+                    class="rounded-circle border border-2 border-light object-fit-cover" width="120" height="120">
                 <h4 class="mt-3 mb-0">Nicolás Krebs</h4>
                 <small class="text-info">Full Stack Java Dev</small>
             </div>
 
             <!-- Redes Sociales -->
             <div class="d-flex justify-content-center gap-3 mb-4">
-                <a href="https://linkedin.com/in/nicolás-krebs-mella-44681b234" target="_blank" class="text-white fs-4 icon-hover"><i class="bi bi-linkedin"></i></a>
-                <a href="https://github.com/nikrebs99-creator" target="_blank" class="text-white fs-4 icon-hover"><i class="bi bi-github"></i></a>
+                <a href="https://linkedin.com/in/nicolás-krebs-mella-44681b234" target="_blank"
+                    class="text-white fs-4 icon-hover"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/nikrebs99-creator" target="_blank" class="text-white fs-4 icon-hover"><i
+                        class="bi bi-github"></i></a>
             </div>
 
             <hr class="border-secondary opacity-50">
 
             <!-- Proyectos -->
-             
+
             <span class="fs-6 text-uppercase text-secondary fw-bold mb-3 px-2">Mis Proyectos</span>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
@@ -39,37 +45,37 @@
                         <i class="bi bi-person-lines-fill me-2"></i> Mi Perfil (CV)
                     </a>
                 </li>
-                
-                <li>        
-                    <a href="proyectos/SmartAsk/index.html" class="nav-link text-white icon-hover" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Web tipo notas con web-storage">
-                        <i class="bi bi-check2-square text-success me-2"></i> Smart-Task
-                    </a>
-                </li>
+                <!-- EJEMPLO DE PUNTO EN LA BARRA LATERAL
                 <li>
-                    <a href="proyectos/biblioteca/index.html" class="nav-link text-white icon-hover" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Pequeña libreria">
-                        <i class="bi bi-journal-code text-warning me-2"></i> Bibliotecan't
-                    </a>
-                </li>
-                <li>
-                    <a href="proyectos/WebBilletera/web/index.html" class="nav-link text-white icon-hover" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Mi texto">
+                    <a href="proyectos/WebBilletera/web/index.html" class="nav-link text-white icon-hover"
+                        data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Mi texto">
                         <i class="bi bi-gear-wide-connected text-info me-2"></i> Billetera-Digital
                     </a>
                 </li>
+                -->
             </ul>
         </div>
 
         <!-- CONTENIDO PRINCIPAL -->
         <div class="container-fluid p-5 principal-content">
+
             <h1 class="display-4 fw-bold mb-4">¡Hola! Soy un Desarrollador Full Stack Java</h1>
-            
+
             <div class="row bg-dark rounded-4 p-4 border border-secondary shadow-lg mb-4">
                 <div class="col-12">
-                    <h3 class="text-info border-bottom border-secondary pb-2"><i class="bi bi-person-badge"></i> Sobre mí</h3>
+                    <h3 class="text-info border-bottom border-secondary pb-2"><i class="bi bi-person-badge"></i> Sobre
+                        mí</h3>
                     <p class="lead mt-3">
-                        Soy un apasionado por la creación de soluciones tecnológicas eficientes, desde el diseño de bases de datos relacionales hasta la implementación de lógicas de negocio robustas e interfaces de usuario intuitivas. 
+                        Soy un apasionado por la creación de soluciones tecnológicas eficientes, desde el diseño de
+                        bases de datos relacionales hasta la implementación de lógicas de negocio robustas e interfaces
+                        de usuario intuitivas.
                     </p>
                     <p>
-                        Mi enfoque va más allá del código: poseo una perspectiva integral de la tecnología. Disfruto resolviendo problemas complejos, ya sea estructurando la inscripción de usuarios en un sistema backend, o diseñando soluciones tangibles que involucran hardware, impresión 3D e integración electrónica. Esta versatilidad me permite entender el ciclo completo de un producto y adaptarme rápidamente a nuevos retos.
+                        Mi enfoque va más allá del código: poseo una perspectiva integral de la tecnología. Disfruto
+                        resolviendo problemas complejos, ya sea estructurando la inscripción de usuarios en un sistema
+                        backend, o diseñando soluciones tangibles que involucran hardware, impresión 3D e integración
+                        electrónica. Esta versatilidad me permite entender el ciclo completo de un producto y adaptarme
+                        rápidamente a nuevos retos.
                     </p>
                 </div>
             </div>
@@ -80,10 +86,14 @@
                     <div class="bg-dark rounded-4 p-4 border border-secondary h-100">
                         <h4 class="text-info"><i class="bi bi-braces"></i> Stack Tecnológico</h4>
                         <ul class="list-group list-group-flush mt-3 bg-transparent">
-                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Backend:</strong> Java, Spring Boot, lógica MVC.</li>
-                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Base de Datos:</strong> MySQL, modelado relacional.</li>
-                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Frontend:</strong> HTML5, CSS3, JavaScript, Bootstrap.</li>
-                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Herramientas:</strong> Git/GitHub, Javadoc, diseño de APIs.</li>
+                            <li class="list-group-item bg-transparent text-light border-secondary">
+                                <strong>Backend:</strong> Java, Spring Boot, lógica MVC.</li>
+                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Base de
+                                    Datos:</strong> MySQL, modelado relacional.</li>
+                            <li class="list-group-item bg-transparent text-light border-secondary">
+                                <strong>Frontend:</strong> HTML5, CSS3, JavaScript, Bootstrap.</li>
+                            <li class="list-group-item bg-transparent text-light border-secondary">
+                                <strong>Herramientas:</strong> Git/GitHub, Javadoc, diseño de APIs.</li>
                         </ul>
                     </div>
                 </div>
@@ -93,24 +103,134 @@
                     <div class="bg-dark rounded-4 p-4 border border-secondary h-100">
                         <h4 class="text-info"><i class="bi bi-tools"></i> Competencias Transversales</h4>
                         <ul class="list-group list-group-flush mt-3 bg-transparent">
-                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Troubleshooting:</strong> Diagnóstico y reparación de hardware y sistemas.</li>
-                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Proyectos DIY:</strong> Integración de componentes electrónicos (Arduino) y prototipado rápido.</li>
-                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Autoaprendizaje:</strong> Capacidad comprobada para asimilar e implementar nuevas tecnologías y documentar procesos de forma clara.</li>
+                            <li class="list-group-item bg-transparent text-light border-secondary">
+                                <strong>Troubleshooting:</strong> Diagnóstico y reparación de hardware y sistemas.</li>
+                            <li class="list-group-item bg-transparent text-light border-secondary"><strong>Proyectos
+                                    DIY:</strong> Integración de componentes electrónicos (Arduino) y prototipado
+                                rápido.</li>
+                            <li class="list-group-item bg-transparent text-light border-secondary">
+                                <strong>Autoaprendizaje:</strong> Capacidad comprobada para asimilar e implementar
+                                nuevas tecnologías y documentar procesos de forma clara.</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <h3 class="text-info border-bottom border-secondary pb-2 mt-5"><i class="bi bi-grid-1x2"></i> Repositorios
+                Destacados</h3>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4 mt-2">
+                <!-- Tarjeta SmartTask -->
+                <div class="col">
+                    <div class="card h-100 bg-dark text-white tarjeta-proyecto">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title text-info mb-0"><i class="bi bi-terminal me-2"></i>SmartTask</h5>
+                                <i class="bi bi-github fs-4 opacity-50"></i>
+                            </div>
+                            <p class="card-text text-light opacity-75">Aplicación de consola para la gestión de tareas.
+                                Manejo de POO, herencia y pruebas unitarias con JUnit.</p>
+                            <div class="mt-auto">
+                                <span class="badge bg-primary border border-light">Java</span>
+                                <span class="badge bg-secondary border border-light">JUnit</span>
+                                <span class="badge bg-secondary border border-light">Jacoco</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-top border-secondary p-3">
+                            <a href="https://github.com/nikrebs99-creator/SmartTask2" target="_blank"
+                                class="btn btn-outline-info w-100 boton-estelar">
+                                Ver Código Fuente <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Pseudo-Biblioteca -->
+                <div class="col">
+                    <div class="card h-100 bg-dark text-white tarjeta-proyecto">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title text-warning mb-0"><i
+                                        class="bi bi-journal-code me-2"></i>Pseudo-Biblioteca</h5>
+                                <i class="bi bi-github fs-4 opacity-50"></i>
+                            </div>
+                            <p class="card-text text-light opacity-75">Backend completo para un sistema de gestión de
+                                cursos y usuarios. Arquitectura MVC, API RESTful y persistencia de datos relacional.</p>
+                            <div class="mt-auto">
+                                <span class="badge bg-success border border-light">Web dinámica</span>
+                                <span class="badge bg-info text-dark border border-light">MySQL</span>
+                                <span class="badge bg-primary border border-light">Java</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-top border-secondary p-3">
+                            <a href="https://github.com/nikrebs99-creator/SistemaBibliotecaDigitalISEG" target="_blank"
+                                class="btn btn-outline-info w-100 boton-estelar">
+                                Ver Repositorio <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- Tarjeta campp boot uni -->
+                 <div class="col">
+                    <div class="card h-100 bg-dark text-white tarjeta-proyecto">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title text-warning mb-0"><i
+                                        class="bi bi-journal-code me-2"></i>Visor de cursos universitarios</h5>
+                                <i class="bi bi-github fs-4 opacity-50"></i>
+                            </div>
+                            <p class="card-text text-light opacity-75"> Aplicación que se conecta a una base de datos para que los estudiantes puedan llevar la cuenta de cursos inscritos.</p>
+                            <div class="mt-auto">
+                                <span class="badge bg-success border border-light">Spring Boot</span>
+                                <span class="badge bg-info text-dark border border-light">MySQL</span>
+                                <span class="badge bg-primary border border-light">Java</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-top border-secondary p-3">
+                            <a href="https://github.com/nikrebs99-creator/CampBootUni" target="_blank"
+                                class="btn btn-outline-info w-100 boton-estelar">
+                                Ver Repositorio <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </a>
+                        </div>
+                
+            </div>
         </div>
+        <!-- Tarjeta Billetera web-->
+         <div class="col">
+                    <div class="card h-100 bg-dark text-white tarjeta-proyecto">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title text-warning mb-0"><i
+                                        class="bi bi-journal-code me-2"></i>Billetera web</h5>
+                            </div>
+                            <p class="card-text text-light opacity-75">Pequeña página que simula un banco con sus transacciones correspondientes, usando web storage para el manejo de esto.</p>
+                            <div class="mt-auto">
+                                <span class="badge bg-info text-dark border border-light">Bootstrap</span>
+                                <span class="badge bg-primary border border-light">HTML</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-top border-secondary p-3">
+                            <a href="/proyectos/WebBilletera/web/index.html" target="_blank"
+                                class="btn btn-outline-info w-100 boton-estelar">
+                                Ver página! <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </a>
+                        </div>
+
     </div>
-<!-- Script de Bootstrap (Si aún no lo tenías, ponlo primero) -->
+
+
+
+    <!-- Script de Bootstrap (Si aún no lo tenías, ponlo primero) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Script para activar los tooltips -->
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
 </body>
+
 </html>
 </body>
+
 </html>
